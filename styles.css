@@ -28,9 +28,11 @@ body {
   */
 body {
   padding: 0;
-  background: linear-gradient(to right, #00aaff, #00ff6c);
+  background: linear-gradient(45deg, #ee7752, #e73c7e, #00aaff, #00ff6c);
+  background-size: 400% 400%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  animation: gradient 5s ease infinite;
 }
 /*
     6. Improve media defaults
@@ -95,6 +97,13 @@ h6 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+button.number-functions {
+  background-color: #f15c21;
+}
+button.number-functions:hover {
+  background-color: #ee7752;
+}
+
 .span-two {
   grid-column: span 2;
 }
@@ -120,4 +129,17 @@ h6 {
 .screen-output > .current-entry {
   font-size: 2.5rem;
   color: rgba(255, 255, 255);
+}
+
+/* Animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
