@@ -4,7 +4,6 @@ class Calculator {
     this.previousNumberText = previousNumberText;
     this.clear();
   }
-  
 
   clear() {
     this.currentNumber = "";
@@ -59,11 +58,35 @@ class Calculator {
     this.operation = undefined;
     this.currentNumber = computation;
   }
+  getDisplayNumber(number) {
+    const stringNum = number.toString();
+    const integerDigits = parseFloat(stringNum.split(".")[0]);
+    const decimalDigits = stringNum.split(".")[1];
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = "";
+    } else {
+      integerDisplay = integerDigits.toLocaleString("en", {
+        maximumFractionDigits: 0,
+      });
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
+  }
 
   updateScreen() {
-    this.currentNumberText.innerText = this.currentNumber;
+    this.currentNumberText.innerText = this.getDisplayNumber(
+      this.currentNumber
+    );
     if (this.previousNumber != null) {
-      this.previousNumberText.innerText = `${this.previousNumber} ${this.operation}`;
+      this.previousNumberText.innerText = `${this.getDisplayNumber(
+        this.previousNumber
+      )} ${this.operation}`;
+    } else {
+        this.previousNumberText.innerText = "history";
     }
   }
 }
